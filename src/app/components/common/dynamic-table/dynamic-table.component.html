@@ -1,0 +1,105 @@
+<div fxLayout fxLayout.xs="column" fxLayout.sm="column" fxLayoutAlign="left" fxLayoutGap="15px" fxLayoutGap.xs="0">
+    <div fxFlex="60%">
+        <mat-form-field>
+            <input matInput placeholder="Search" id="txtSearch" [(ngModel)]="searchText" (input)="sortColumn = '';pageIndex = 1;onSearchChange($event.target.value)">
+        </mat-form-field>
+    </div>
+    <div fxFlex="8%" class="tableButtons">
+        <button mat-raised-button color="primary" (click)="pageIndexChangeByButton('first')" [disabled]="pageIndex == 1">
+            <i class="fas fa-angle-double-left"></i>
+        </button>
+    </div>
+    <div fxFlex="8%" class="tableButtons">
+        <button mat-raised-button color="primary" (click)="pageIndexChangeByButton('pre')" [disabled]="pageIndex == 1">
+            <i class="fas fa-angle-left"></i>
+        </button>
+    </div>
+    <div fxFlex="8%">
+        <mat-form-field>
+            <mat-select (change)="pageIndexChange()" [(ngModel)]="pageIndex">
+                <mat-option *ngFor="let option of pageIndexList" [value]="option">
+                    {{ option }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+    <div fxFlex="8%" class="tableButtons">
+        <button mat-raised-button color="primary" (click)="pageIndexChangeByButton('next')" [disabled]="pageIndex == pageIndexList[pageIndexList.length - 1]">
+            <i class="fas fa-angle-right"></i>
+        </button>
+    </div>
+    <div fxFlex="8%" class="tableButtons">
+        <button mat-raised-button color="primary" (click)="pageIndexChangeByButton('last')" [disabled]="pageIndex == pageIndexList[pageIndexList.length - 1]">
+            <i class="fas fa-angle-double-right"></i>
+        </button>
+    </div>
+</div>
+<div class="row" [hidden]="!dataFiltered">
+    <div class="col-md-9">
+        {{totalRecords}} of {{allRecords}} records found based on the filter criteria
+    </div>
+</div>
+<br>
+<div class="row">
+    <div class="col-md-12">
+        <table *ngIf="headerColumns.length > 0" data-toggle="table" id="example" class="table table-striped table-bordered" cellspacing="0"
+            width="100%">
+            <thead>
+                <tr>
+                    <th *ngIf="notes!='notes'">
+                        <input type="checkbox" id="chkAllSelect" [(ngModel)]="headerSelected" (click)="getSelectedRowAll()" *ngIf="multiselect==true">
+                        <!-- <div class="checkbox">
+                    <label>
+                      <input type="checkbox" id="chkAllSelect"   value="" (click)="getSelectedRowAll()">
+                      <span class="cr">
+                        <i class="cr-icon glyphicon glyphicon-ok"></i>
+                      </span>
+                    </label>
+                  </div> -->
+                    </th>
+                    <ng-container *ngFor="let item of headerColumns;">
+                        <th style="word-break:break-all;" [ngClass]="{'sorting_asc':item.sort == 1, 'sorting_desc':item.sort == -1, 'sorting':item.sort == 0}"
+                            style="cursor: pointer;" (click)="searchText='';pageIndex = 1;selectedIndex = -1;sort(item)" *ngIf="item.sTitle!='selectedRow'">
+                            {{ titelizeKeys(item.sTitle)}}
+                        </th>
+                    </ng-container>
+
+                </tr>
+                <tr id="filterrow" *ngIf="notes!='notes'">
+                    <th></th>
+                    <ng-container *ngFor="let item of headerColumns;">
+                        <td *ngIf="item.sTitle!='selectedRow'">
+                            <input type="search" id="txtColSearch" [attr.column]="item.sTitle" (input)="onSearchChangeByColumn($event.target.value,item)"
+                                class="search-query form-control" placeholder="Search" />
+
+                        </td>
+                    </ng-container>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let row of usersList; let i = index;" [ngClass]="{'selected' : row.selectedRow==true}" role="row" (click)="getSelectedRow(i,row);">
+                    <td *ngIf="notes!='notes'">
+                        <input type="checkbox" name="chkSelect" [(ngModel)]="row.selectedRow">
+                        <!-- (click)="getSelectedRow(i,row)" -->
+                        <!-- <div class="checkbox">
+                          <label>
+                           <input type="checkbox" value="" name="chkSelect"   [attr.data_id]="i" value="" (click)="getSelectedRow(i,row)">
+                           <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+                           </label>
+                        </div> -->
+
+
+                    </td>
+                    <ng-container *ngFor="let item of headerColumns;">
+                        <td style="word-break:break-all;" *ngIf="item.sTitle!='selectedRow'">
+                            {{row[item.sTitle]}}
+                        </td>
+                    </ng-container>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="col-md-12">&nbsp;</div>

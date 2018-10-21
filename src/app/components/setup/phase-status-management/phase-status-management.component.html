@@ -1,0 +1,22 @@
+<div class="container topMarginRemovethis">
+  <mat-card class="matContainer">
+    <div class="matContainerPadding">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item" aria-current="page">Members</li>
+          <li class="breadcrumb-item" aria-current="page">Phase Management</li>
+          <li class="breadcrumb-item" aria-current="page">Status Management</li>
+        </ol>
+      </nav>
+      <simple-dock (onDocEvent)="handleDocEvent($event)" [dock]="dock" [isComponentLoaded]="true" [callApplyChanges]="true" class="fixed"></simple-dock>
+      <!-- <form [formGroup]="formGroup" class="upperForm">
+        <textarea [froalaEditor]="editorOptions" formControlName="template"></textarea>
+        <mat-error *ngIf="formGroup.get('template').errors && formGroup.get('template').touched">Please define message template</mat-error>
+      </form> -->
+      <div class="upperForm">
+        <dynamic-table [hidden]="!details" [key]="'ID'" [multiselect]="true" [details]="details" (onTableEvent)="handleTableEvent($event)" class="upperForm"></dynamic-table>
+      </div>
+    </div>
+  </mat-card>
+</div>
+<app-loader [hidden]="!loading"></app-loader>

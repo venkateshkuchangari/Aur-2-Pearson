@@ -1,0 +1,23 @@
+<div class="col-md-6" style="background-color: rgb(245,245,245)">
+    <div class="breadcrumbs">
+        <a routerLink="/">Home</a> /
+        <!-- <a routerLink="./candidatespage"> -->Assignments - Candidates </div>
+</div>
+ 
+<div class="clearfix"></div>
+
+<form class="page-container">
+    <div class="row col-lg-12 col-md-12">
+        <simple-dock (onDocEvent)="handleDocEvent($event)" [dock]="dock" [isRowSelected]="id > 0 || headerSelected ? true : false"
+            [isComponentLoaded]="isComponentloaded"></simple-dock>
+    </div>
+
+    <div id="divTest" class="col-lg-12 dock-after" style="display:none;">
+
+         <dynamic-form [dataObject]="dynamicObject"></dynamic-form> 
+    </div>
+
+    <div id="divTable" class="col-lg-12 col-md-12 dock-after" >
+        <dynamic-table [hidden]="!details" [key]="'ID'" [details]="details" (onTableEvent)="handleTableEvent($event)"></dynamic-table>
+    </div>
+</form>

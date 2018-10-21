@@ -1,0 +1,36 @@
+<div class="container topMarginRemovethis">
+  <mat-card class="matContainer">
+    <div class="matContainerPadding">
+      <mat-card-title>
+        <h3 class="text-center">Add/Edit tracking</h3>
+      </mat-card-title>
+      <simple-dock (onDocEvent)="handleDocEvent($event)" [dock]="dock" [isComponentLoaded]="true" [callApplyChanges]="true" class="fixed"></simple-dock>
+      <form [formGroup]="formGroup" class="upperForm">
+        <div class="alert alert-info" role="alert" class="topMarginRemovethis">
+          You are adding/editing records for the following members {{members.join()}}
+        </div>
+        <div fxLayout fxLayout.xs="column" fxLayoutAlign="left" fxLayoutGap="15px" fxLayoutGap.xs="0">
+          <mat-form-field fxFlex>
+            <mat-select placeholder="Select Test" formControlName='testId'>
+              <mat-option *ngFor="let test of testList" [value]="test.id">
+                {{ test.Test }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field fxFlex>
+            <mat-select placeholder="Select Type" formControlName='typeId'>
+              <mat-option *ngFor="let type of typeList" [value]="type.lkp_lookup_value_id">
+                {{ type.value_description }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field fxFlex>
+            <input matInput [matDatepicker]="picker" placeholder="Choose a date" formControlName="date">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </div>
+      </form>
+    </div>
+  </mat-card>
+  <app-loader [hidden]="!loading"></app-loader>

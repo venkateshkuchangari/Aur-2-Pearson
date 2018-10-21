@@ -1,0 +1,17 @@
+<div class="col-md-6" style="background-color: rgb(245,245,245)">
+    <div class="breadcrumbs">
+        <a routerLink="/">Home</a> / Setup - General - Consent form email template
+    </div>
+</div>
+<div class="container topMarginRemovethis">
+    <mat-card class="matContainer">
+        <div class="matContainerPadding">
+            <simple-dock (onDocEvent)="handleDocEvent($event)" [dock]="dock" [isComponentLoaded]="true" [callApplyChanges]="true" class="fixed"></simple-dock>
+            <form [formGroup]="formGroup" class="upperForm">
+                <!-- <textarea [froalaEditor]="editorOptions" formControlName="template"></textarea> -->
+                <ckeditor [config]="ckEditorConfig" formControlName="template" debounce="500"></ckeditor>
+            </form>
+        </div>
+    </mat-card>
+</div>
+<app-loader [hidden]="!loading"></app-loader>

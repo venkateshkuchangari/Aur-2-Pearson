@@ -1,0 +1,32 @@
+<div class="container-fluid topMarginRemovethis">
+  <mat-card class="matContainer">
+    <div class="matContainerPadding">
+      <mat-card-title>
+        <h3 class="text-center">Variable Map Calculations</h3>
+      </mat-card-title>
+      <simple-dock (onDocEvent)="handleDocEvent($event)" [dock]="dock" [isComponentLoaded]="true" [callApplyChanges]="true" class="fixed"></simple-dock>
+      <form [formGroup]="formGroup" class="upperForm">
+        <div formArrayName="list" *ngFor="let item of formGroupcast(); let i = index;">
+          <div [formGroupName]="i">
+            <div fxLayout fxLayout.xs="column" fxLayoutAlign="left" fxLayoutGap="15px" fxLayoutGap.xs="0">
+              <!-- <div fxFlex="5%">
+                <mat-checkbox (click)='selectedItem(val.checked,item)' #val formControlName="selected"></mat-checkbox>
+              </div> -->
+              <mat-form-field fxFlex>
+                <input matInput placeholder="Option" formControlName="option">
+              </mat-form-field>
+              <div fxFlex>
+                  <angular2-multiselect [data]="mappedOptionList" [settings]="dropdownSettings" formControlName="mappedOption" *ngIf="mappedOptionList && mappedOptionList.length>0"></angular2-multiselect>
+              </div>
+
+              <mat-form-field fxFlex>
+                <input matInput placeholder="Option Count" formControlName="count">
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </mat-card>
+</div>
+<app-loader [hidden]="!loading"></app-loader>

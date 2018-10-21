@@ -1,0 +1,143 @@
+<form class="row" [formGroup]="form">
+    <div class="col-sm-12" fxLayout="row" fxLayoutAlign="center center" *ngFor="let header of objectProps;let headerIndex = index;">
+        <div class="col-sm-12">
+            <br>
+            <div class="row col-sm-12">
+            <div class="col-sm-1" >
+                &nbsp;
+            </div>
+            <div class="col-sm-10" style="background-color:gray;font-size: large;font-weight: bold;text-align:center;border-radius: 5px">
+                {{header.headerText}}
+            </div>
+            <div class="col-sm-1" >
+                    &nbsp;
+                </div>
+            </div>
+            <div class="row col-sm-12" *ngFor="let prop of header.frUiTemplateDetailResponse;let childIndex = index;">
+                    <div class="col-sm-1" >
+                        &nbsp;
+                    </div>
+
+             
+            <div class="col-sm-10" >
+                <div class="col-sm-12" *ngIf="childIndex==0">&nbsp;</div>
+                <div [ngSwitch]="prop.uiColumnType" class="col-sm-12">
+                    <div *ngSwitchCase="'toggle'">{{prop.uiControlDisplayLabel}}
+                        <br> </div>
+                    <mat-slide-toggle ng-click="toggle(prop)" color="Primary" [formControlName]="prop.uiTemplateDetailId" *ngSwitchCase="'toggle'">{{prop.label}} </mat-slide-toggle>
+
+                </div>
+                <div [ngSwitch]="prop.uiColumnType" class="col-sm-12">
+                    <mat-form-field *ngSwitchCase="'text'">
+                        <input matInput [formControlName]="prop.uiTemplateDetailId" [id]="prop.key" [type]="prop.uiColumnType" [placeholder]="prop.uiControlDisplayLabel">
+                    </mat-form-field>
+                </div>
+
+                <div [ngSwitch]="prop.uiColumnType" class="col-sm-12">
+                    <mat-form-field *ngSwitchCase="'numeric'">
+                        <input matInput [formControlName]="prop.uiTemplateDetailId" [id]="prop.key" [type]="prop.uiColumnType" [placeholder]="prop.uiControlDisplayLabel">
+                    </mat-form-field>
+                </div>
+
+
+
+                <div [ngSwitch]="prop.uiColumnType" class="col-sm-12">
+                    <div class="row col-sm-12 dynamic-ddl" *ngSwitchCase="'select'">
+                        <span class="col-sm-12 customplaceholderdynamic dynamic-ddl-span">
+                            {{prop.uiControlDisplayLabel}}
+                        </span>
+                        <div class="col-md-12 dynamic-ddl-btn">
+                            <select id="selectpicker" class="selectpicker" data-live-search="true" [formControlName]="prop.uiTemplateDetailId">
+                                <option value="">{{prop.uiControlDisplayLabel}}</option>
+                                <option class="special" *ngFor="let option of prop.dloListId" [value]="option.lkp_lookup_value_id">{{option.value_description}} </option>
+                            </select>
+                        </div>
+                        <br>
+                    </div>
+                </div>
+
+                <div [ngSwitch]="prop.uiColumnType" class="col-sm-12">
+                    <div *ngSwitchCase="'radio'">
+                        <mat-radio-group class="col-sm-12" [formControlName]="prop.uiTemplateDetailId">
+                            <mat-radio-button class="md-primary" *ngFor="let option of prop.options" [value]="option.value">{{option.uiColumnName}} </mat-radio-button>
+                        </mat-radio-group>
+                    </div>
+                </div>
+
+                <div [ngSwitch]="prop.uiColumnType" class="col-sm-12">
+                    <div *ngSwitchCase="'multi-select'">
+                        <div id="divRoles" class="col-lg-12 col-md-12" style="margin-top:2%">
+                            <span id="defaultRole" class="selected-role" *ngFor="let role of prop.dloListId;let i = index;" [hidden]="checkValue(headerIndex,childIndex,role.lkp_lookup_value_id,prop.uiTemplateDetailId)">
+                                <span id="spanRole" class="role" [hidden]="checkValue(headerIndex,childIndex,role.lkp_lookup_value_id,prop.uiTemplateDetailId)">
+                                    {{role.value_description}}
+                                </span>
+                                <span id="spanRoleCross" [hidden]="checkValue(headerIndex,childIndex,role.lkp_lookup_value_id,prop.uiTemplateDetailId)" class="span-delete"
+                                    (click)="deleteRow(headerIndex,childIndex,role.lkp_lookup_value_id,prop.uiTemplateDetailId)">
+                                    X
+                                </span>
+                            </span>
+                        </div>
+                        <div class="col-lg-12 dynamic-ddl">
+                            <select id="testmulti" class="col-sm-12" [attr.placeholder]="prop.uiControlDisplayLabel" [attr.key]="prop.uiTemplateDetailId"
+                                [formControlName]="prop.uiTemplateDetailId" multiple="multiple">
+                                <option class="special" [attr.childIndex]="childIndex" [attr.headerIndex]="headerIndex" [attr.key]="prop.uiTemplateDetailId"
+                                    *ngFor="let option of prop.dloListId" [value]="option.lkp_lookup_value_id">{{option.value_description}} </option>
+                            </select>
+                        </div>
+                        <br>
+                    </div>
+
+                    <!-- <div>
+                                <ng-multiselect-dropdown  [data]="cities" [(ngModel)]="selectedItems" [settings]="dropdownSettings"
+                                (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event)">
+                            </ng-multiselect-dropdown>
+                        </div> -->
+
+
+                </div>
+                <div [ngSwitch]="prop.uiColumnType" class="col-lg-12">
+                    <mat-form-field *ngSwitchCase="'date'">
+                        <mat-datepicker mat-placeholder="Enter date" mat-min-date="minDate" mat-max-date="maxDate"></mat-datepicker>
+
+                        <input matInput [matDatepicker]="picker" [formControlName]="prop.uiTemplateDetailId" [placeholder]="prop.uiControlDisplayLabel">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-12" style="color:red" *ngIf="form.controls[prop.uiTemplateDetailId].invalid && pageSubmit">
+                    <div *ngIf="form.controls[prop.uiTemplateDetailId].errors.required">
+                        {{prop.uiControlDisplayLabel}} is required.
+                    </div>
+                    <div *ngIf="form.controls[prop.uiTemplateDetailId].errors.minlength">
+                        {{prop.uiControlDisplayLabel}} must be at least {{prop.uiControlValidation.min}} characters long.
+
+                    </div>
+                    <div *ngIf="form.controls[prop.uiTemplateDetailId].errors.maxlength">
+                        {{prop.uiControlDisplayLabel}} must be max {{prop.uiControlValidation.max}} characters long.
+                    </div>
+                    <div *ngIf="form.controls[prop.uiTemplateDetailId].errors.pattern">
+                        {{prop.uiControlDisplayLabel}} not valid.
+                    </div>
+                    <div *ngIf="form.controls[prop.uiTemplateDetailId].errors.email">
+                        Please enter valid email
+                    </div>
+
+                </div>
+
+                <div class="col-md-12" style="color:red">
+                    <div *ngIf="prop.uiColumnName == 'date of birth'">
+                        {{dateValidationMsg}}
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-sm-1" >
+                    &nbsp;
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-1"></div>
+    </div>
+
+</form>

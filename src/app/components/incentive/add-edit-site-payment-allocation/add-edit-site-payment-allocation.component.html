@@ -1,0 +1,50 @@
+<div class="container topMarginRemovethis">
+        <mat-card class="matContainer">
+            <div class="matContainerPadding">
+                <mat-card-title>
+                    <h3 class="center">{{pageTitle}} Payment</h3>
+                </mat-card-title>
+                <simple-dock (onDocEvent)="handleDocEvent($event)" [dock]="dock" [isComponentLoaded]="true" [callApplyChanges]="true" class="fixed"></simple-dock>
+                <form [formGroup]="sitePaymentAllocationForm" class="upperForm">
+                    <div fxLayout fxLayout.xs="column" fxLayoutAlign="left" fxLayoutGap="15px" fxLayoutGap.xs="0">
+                        <mat-form-field fxFlex>
+                            <input type="text" matInput placeholder="Name" formControlName="name">
+                        </mat-form-field>
+                        <mat-form-field fxFlex>
+                            <mat-select placeholder="Select Test" formControlName="payeeType">
+                                <mat-option *ngFor="let payeeType of payeeTypeList" [value]="payeeType.lkp_lookup_value_id">
+                                    {{ payeeType.value_description }}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <mat-form-field fxFlex>
+                            <mat-select placeholder="Incentive Type" formControlName="paymentAllocation">
+                                <mat-option *ngFor="let payMentAllocation of paymentAllocationList" [value]="payMentAllocation.lkp_lookup_value_id">
+                                    {{ payMentAllocation.value_description }}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div fxLayout fxLayout.xs="column" fxLayoutAlign="left" fxLayoutGap="15px" fxLayoutGap.xs="0">
+                        <div fxFlex="100%">
+                            <mat-form-field>
+                                <input type="text" matInput placeholder="Notes" formControlName="notes">
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </form>
+                <div *ngIf="commentList">
+                    <mat-card-title>Notes</mat-card-title>
+                    <!-- <blockquote class="blockquote" *ngFor="let comment of commentList">
+                        <p class="mb-0">{{comment.note}}</p>
+                        <footer class="blockquote-footer">
+                            <cite title="Source Title">{{comment.user_name}}</cite>
+                        </footer>
+                    </blockquote> -->
+                    <dynamic-table [hidden]="!commentList" [key]="'id'" [details]="commentList" [notes]="'notes'"></dynamic-table>
+                </div>
+            </div>
+    
+        </mat-card>
+    </div>
+    <app-loader [hidden]="!loading"></app-loader>

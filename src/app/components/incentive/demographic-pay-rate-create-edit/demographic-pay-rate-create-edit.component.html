@@ -1,0 +1,106 @@
+<!-- <div class="container topMarginRemovethis">
+  <mat-card class="matContainer">
+    <div class="matContainerPadding">
+      <simple-dock (onDocEvent)="handleDocEvent($event)" [dock]="dock" [isComponentLoaded]="true" [callApplyChanges]="true" class="fixed"></simple-dock>
+      <form [formGroup]="demoGraphicPayRateForm" class="upperForm">
+        <div fxLayout fxLayout.xs="column" fxLayout.sm="column" fxLayoutAlign="left" fxLayoutGap="15px" fxLayoutGap.xs="0">
+          <mat-form-field fxFlex="25%">
+            <input type="text" matInput placeholder="Name" formControlName="name">
+          </mat-form-field>
+          <mat-form-field fxFlex="25%">
+            <mat-select placeholder="Select Test" formControlName="test">
+              <mat-option *ngFor="let food of foods" [value]="food.value">
+                {{ food.viewValue }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field fxFlex="25%">
+            <mat-select placeholder="Incentive Type" formControlName="incentiveType">
+              <mat-option *ngFor="let food of foods" [value]="food.value">
+                {{ food.viewValue }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field fxFlex="25%">
+            <mat-select placeholder="Payee Type" formControlName="payeeType">
+              <mat-option *ngFor="let food of foods" [value]="food.value">
+                {{ food.viewValue }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div fxLayout fxLayout.xs="column" fxLayoutAlign="left" fxLayoutGap="15px" fxLayoutGap.xs="0">
+          <div fxFlex="24%">
+            <mat-form-field>
+              <mat-select placeholder="Select Status" formControlName="status">
+                <mat-option *ngFor="let food of foods" [value]="food.value">
+                  {{ food.viewValue }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput [matDatepicker]="picker" placeholder="Effective Date" formControlName="effectiveDate">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+            <mat-form-field>
+              <input type="text" matInput placeholder="Amount" formControlName="amount">
+            </mat-form-field>
+            <mat-checkbox formControlName="active">Active</mat-checkbox>
+          </div>
+          <div fxFlex="75%">
+            <mat-form-field>
+              <input matInput placeholder="Notes" formControlName="notes">
+            </mat-form-field>
+          </div>
+        </div>
+      </form>
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Variables</h5>
+          <form [formGroup]="variablesForm" class="lowerForm" (submit)="addVariable()">
+            <div fxLayout fxLayout.xs="column" fxLayoutAlign="left" fxLayoutGap="15px" fxLayoutGap.xs="0">
+              <mat-form-field fxFlex>
+                <mat-select placeholder="Select Variable" formControlName="variable">
+                  <mat-option *ngFor="let food of foods" [value]="food.value">
+                    {{ food.viewValue }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field fxFlex>
+                <mat-select placeholder="Select Value" formControlName="values">
+                  <mat-option *ngFor="let food of foods" [value]="food.value">
+                    {{ food.viewValue }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              </div>
+              <div fxLayout fxLayout.xs="column" fxLayoutAlign="left" fxLayoutGap="15px" fxLayoutGap.xs="0">
+                <button type="submit" mat-raised-button color="primary" [disabled]="variablesForm.invalid" >Add Variable</button>
+              </div>
+          </form>
+          <table class="table">
+            <thead class="thead-light">
+              <tr>
+                <th>Variable</th>
+                <th>Value</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let variable of variablesList">
+                <td>{{ variable.variable }}</td>
+                <td>{{ variable.value }}</td>
+                <td>
+                  <span class="delIcon" (click)="deleteVariable(variable)">
+                    <i class="fas fa-trash-alt"></i>
+                  </span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </mat-card>
+</div> -->

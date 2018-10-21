@@ -1,0 +1,17 @@
+export const AddorEdit = 'Add/Edit';
+export const Save = 'Save';
+export const Cancel = 'Cancel';
+export const Delete = 'Delete';
+export const Refresh = 'Refresh';
+export const Select = 'Select';
+export const AddProject = 'Add Project';
+export const AddPhase = 'Add Phase';
+export const AddStudy = 'Add Study';
+export const Copy = 'Copy';
+export const UploadTargets = 'Upload Targets';
+export const Print = 'Print';
+export const SaveOrAdd = 'Save/Add';
+export const Add = 'Add';
+export const Edit = 'Edit';
+export const AddPhaseTest = 'Add Phase Test';
+export const CreateAnother = 'Create Another';

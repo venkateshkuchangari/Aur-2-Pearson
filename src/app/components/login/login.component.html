@@ -1,0 +1,40 @@
+<div class="login-component">
+
+
+    <div class="loginContent" fxLayout="row" fxLayoutAlign="center center">
+  
+      <div class="loginCard loginContent1" fxLayout="row" fxLayoutGap="15px" fxLayoutAlign="center center">
+        <!-- mat-card-avatar class="CompanyLogo" -->
+        <div >
+          <img src="../../../assets/images/pearson-logo@2x.jpg" class="CompanyLogo" >
+        </div>
+        <h3>Pearson </h3>
+      </div>
+      <form class="login_form">
+  
+        <div class="section">
+          <label for="username" class="field prepend-icon">
+            <input type="text" id="username" class="form-control" placeholder="Enter username" name="username" [(ngModel)]="username">
+            <label for="username" class="field-icon">
+              <i class="fa fa-user"></i>
+            </label>
+          </label>
+        </div>
+  
+        <div class="section">
+          <label for="password" class="field prepend-icon">
+            <input type="password" name="password" id="password" class="gui-input" placeholder="Enter password" [(ngModel)]="password">
+            <label for="password" class="field-icon">
+              <i class="fa fa-lock"></i>
+            </label>
+          </label>
+        </div>
+  
+  
+  
+        <button mat-raised-button color="primary" (click)="login()">Login</button>
+      </form>
+  
+    </div>
+  
+  </div>

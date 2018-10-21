@@ -1,0 +1,30 @@
+<div class="col-md-6" style="background-color: rgb(245,245,245)">
+    <div class="breadcrumbs">
+        <a routerLink="/">Home</a> / Messages - Send Message
+    </div>
+</div>
+<div class="container topMarginRemovethis">
+  <mat-card class="matContainer">
+    <div class="matContainerPadding">
+      <!-- <mat-card-title>
+        <h3 class="text-center">Send Message</h3>
+      </mat-card-title> -->
+      <simple-dock (onDocEvent)="handleDocEvent($event)" [dock]="dock" [isComponentLoaded]="true" [callApplyChanges]="true" class="fixed"></simple-dock>
+      <form [formGroup]="formGroup" class="upperForm">
+        <mat-form-field>
+          <input matInput placeholder="Subject" formControlName="subject">
+        </mat-form-field>
+        <!-- <textarea [froalaEditor]="editorOptions" formControlName="template"></textarea> -->
+        <ckeditor [config]="ckEditorConfig" formControlName="template" debounce="500"></ckeditor>
+        <mat-error *ngIf="formGroup.get('template').errors && formGroup.get('template').touched">Email Body cant be empty</mat-error>
+      </form>
+      <mat-card-title [hidden]="!recipientList">
+        <h4>Select Receiver</h4>
+      </mat-card-title>
+      <mat-error *ngIf="formGroup.get('sendTo').errors && formGroup.get('sendTo').touched">Please select a recepient</mat-error>
+      <dynamic-table [hidden]="!recipientList" [key]="'id'" [details]="recipientList" (onTableEvent)="handleTableEvent($event)"
+        class="upperForm"></dynamic-table>
+    </div>
+  </mat-card>
+</div>
+<app-loader [hidden]="!loading"></app-loader>

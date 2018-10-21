@@ -1,0 +1,91 @@
+<div class="container topMarginRemovethis">
+        <mat-card class="matContainer">
+            <div class="matContainerPadding">
+                <mat-card-title>
+                    <h3 class="center">{{pageTitle}} Examiner</h3>
+                </mat-card-title>
+                <simple-dock (onDocEvent)="handleDocEvent($event)" [dock]="dock" [isComponentLoaded]="true" [callApplyChanges]="true" class="fixed">
+                </simple-dock>
+                <form [formGroup]="examinerSitePayrate" class="upperForm">
+                    <div fxLayout fxLayout.xs="column" fxLayoutAlign="left" fxLayoutGap="15px" fxLayoutGap.xs="0">
+                        <mat-form-field fxFlex="25%">
+                            <input type="text" matInput placeholder="Name" formControlName="name">
+                        </mat-form-field>
+                        <mat-form-field fxFlex="25%">
+                            <mat-select placeholder="Select Test" formControlName="test">
+                                <mat-option *ngFor="let test of testList" [value]="test.id">
+                                    {{ test['Test Name'] }}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <mat-form-field fxFlex="25%">
+                            <mat-select placeholder="Incentive Type" formControlName="incentiveType">
+                                <mat-option *ngFor="let incentive of incentiveType" [value]="incentive.lkp_lookup_value_id">
+                                    {{ incentive.value_description }}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <mat-form-field fxFlex="25%">
+                            <mat-select placeholder="Payee Type" formControlName="payeeType">
+                                <mat-option *ngFor="let payee of payeeTypeList" [value]="payee.lkp_lookup_value_id">
+                                    {{ payee.value_description }}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div fxLayout fxLayout.xs="column" fxLayoutAlign="left" fxLayoutGap="15px" fxLayoutGap.xs="0">
+                        <div fxFlex="24%">
+                            <mat-form-field>
+                                <mat-select placeholder="Select Status" formControlName="status">
+                                    <mat-option *ngFor="let status of statusList" [value]="status.status_id">
+                                        {{ status.status_description }}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <div fxFlex="76%">
+                            <div>
+                                <mat-form-field>
+                                    <input matInput placeholder="Notes" formControlName="notes">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+                    <div fxLayout fxLayout.xs="column" fxLayoutAlign="left" fxLayoutGap="15px" fxLayoutGap.xs="0">
+                        <div fxFlex="24%">
+                            <mat-form-field>
+                                <input matInput [matDatepicker]="picker" placeholder="Effective Date" formControlName="effectiveDate">
+                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                        <div fxFlex="25%">
+                            <mat-form-field>
+                                <input type="text" matInput placeholder="Amount" formControlName="amount">
+                            </mat-form-field>
+                        </div>
+                        <div fxFlex="51%">
+                            <div *ngIf="dropdownList.length>0">
+                                <angular2-multiselect [data]="dropdownList" [(ngModel)]="selectedItems" [settings]="dropdownSettings" (onSelect)="onItemSelect($event)"
+                                    (onDeSelect)="OnItemDeSelect($event)" (onSelectAll)="onSelectAll($event)" (onDeSelectAll)="onDeSelectAll($event)"
+                                    formControlName="examiner"></angular2-multiselect>
+                            </div>
+                            <span class="errorSuggestion" *ngIf="examinerSitePayrate.get('examiner').errors && examinerSitePayrate.get('examiner').touched">Please Select a Examiner</span>
+                        </div>
+                    </div>
+                    <mat-checkbox formControlName="active">Active</mat-checkbox>
+                </form>
+                <div *ngIf="commentList">
+                    <mat-card-title>Notes</mat-card-title>
+                    <!-- <blockquote class="blockquote" *ngFor="let comment of commentList">
+                        <p class="mb-0">{{comment.note}}</p>
+                        <footer class="blockquote-footer">
+                            <cite title="Source Title">{{comment.user_name}}</cite>
+                        </footer>
+                    </blockquote> -->
+                    <dynamic-table [hidden]="!commentList" [key]="'id'" [details]="commentList" [notes]="'notes'"></dynamic-table>
+                </div>
+            </div>
+        </mat-card>
+    </div>
+    <app-loader [hidden]="!loading"></app-loader>

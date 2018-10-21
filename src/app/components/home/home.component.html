@@ -1,0 +1,689 @@
+<div [ngStyle]='backGroundColor'>
+<nav class="navbar navbar-expand-md navbar-dark bg-dark-custom fixed-top navbar-flex-column" [ngClass]="{'collapseMenu':collapseMenu}" [ngStyle]="backGroundColor">
+
+    <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault"
+                        aria-expanded="true" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                 -->
+
+    <div class="col-md-12 collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="col-md-12 navbar-nav mr-auto">
+            <li>
+                <a data-toggle="dropdown" routerLink="/">
+                    <div class="menuLogo">
+                        <!-- <img src="./assets/images/home.png"> -->
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <div>
+                        Logo
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a data-toggle="dropdown">
+                    <div class="menuLogo">
+                        <!-- <img src="./assets/images/settings.png"> -->
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <div>
+                        Setup
+                        <b class="caret"></b>
+                    </div>
+                </a>
+                <!-- <a href="#" class="dropdown-toggle" data-toggle="dropdown">Setup
+                                                <b class="caret"></b>
+                                            </a> -->
+                <ul class="dropdown-menu multi-level">
+
+                    <!-- <li class="divider"></li> -->
+                    <li class="dropdown-submenu">
+                        <a class="dropdown-toggle" data-toggle="dropdown" [ngStyle]="backGroundColor"> General </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a [routerLink]="['./setup/test']" [ngStyle]="backGroundColor"> Test </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a [routerLink]="['./setup/list']" [ngStyle]="backGroundColor"> List </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a [routerLink]="['./setup/consentFormEmailTemplate']" [ngStyle]="backGroundColor">
+                                    Consent Form E-Mail Template </a>
+                                <!-- <a routerLink="./consentformemailpage">
+                                    Consent Form E-Mail Template </a> -->
+                            </li>
+                            <li class="divider"></li>
+                            <!-- <li>
+                                <a [routerLink]="['./setup/messageTemplate']">
+                                    Create Message Template </a>
+                            </li> -->
+                            <!-- <a routerLink="./messagetemplatepage">
+                                    Message Template </a> -->
+                            <!-- <li class="divider"></li>
+                            <li>
+                                <a [routerLink]="['./settings/userList']">
+                                    Security </a>
+                            </li> -->
+                        </ul>
+                    </li>
+                    <li class="divider"></li>
+                    <!-- <li>
+                                                    <a>Projects</a>
+                                                </li> -->
+                    <li class="dropdown-submenu">
+                        <a class="dropdown-toggle" data-toggle="dropdown" [ngStyle]="backGroundColor"> Projects </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a [routerLink]="['./setup/project']" [ngStyle]="backGroundColor"> Project </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a [routerLink]="['./setup/phase']" [ngStyle]="backGroundColor"> Phase </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a [routerLink]="['./setup/digitalTestEmailTemplate']" [ngStyle]="backGroundColor">
+                                    Digital Test E-Mail Template
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a [routerLink]="['./setup/study']" [ngStyle]="backGroundColor"> Study </a>
+                            </li>
+                            <!-- <li class="divider"></li> -->
+                        </ul>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                            <a [routerLink]="['./setup/variablelist']" [ngStyle]="backGroundColor"> Variable Calculations </a>
+                        <!-- <a routerLink="./variablecalpage"> Variable Calculations </a> -->
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a [routerLink]="['./setup/consentform']" [ngStyle]="backGroundColor"> Consent Form </a>
+                    </li>
+
+                </ul>
+            </li>
+            <li>
+
+                <a data-toggle="dropdown">
+                    <div class="menuLogo">
+                       <!--  <img src="./assets/images/one.png"> -->
+                       <i class="far fa-money-bill-alt"></i>
+                    </div>
+                    <div>
+                        Incentive Tracking
+                        <b class="caret"></b>
+                    </div>
+                </a>
+                <ul class="dropdown-menu multi-level">
+                    <li>
+                        <a [routerLink]="['./incentive/basepay']" [ngStyle]="backGroundColor"> Setup - Base Pay </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <!-- <a routerLink="./examinerpage"> Examiner/Site </a> -->
+                        <a [routerLink]="['./incentive/siteRateList']" [ngStyle]="backGroundColor"> Setup - Examiner/Site </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a routerLink="./demospage" [ngStyle]="backGroundColor"> Setup - Demos </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a [routerLink]="['./incentive/sitePaymenAllocationList']" [ngStyle]="backGroundColor"> Setup - Site Allocation </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a routerLink="./batchedpage" [ngStyle]="backGroundColor"> Batched </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a routerLink="./manualpage" [ngStyle]="backGroundColor"> Manual </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a routerLink="./paymentspage" [ngStyle]="backGroundColor"> Payments </a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <div></div>
+                <a data-toggle="dropdown">
+                    <div class="menuLogo">
+                        <!-- <img src="./assets/images/message.png"> -->
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <div>
+                        <!-- Messages -->
+                        Messages
+                        <b class="caret"></b>
+                    </div>
+                </a>
+                <ul class="dropdown-menu multi-level">
+                    <li>
+                        <a [routerLink]="['./setup/messageTemplate']" [ngStyle]="backGroundColor"> Create Message Template </a>
+                    </li> 
+                    <li class="divider"></li>
+                    <li>
+                        <!-- <a [routerLink]="['./setup/msgcenter']" [ngStyle]="backGroundColor"> Message Center </a> -->
+                        <a [routerLink]="['./messages/temp']" [ngStyle]="backGroundColor"> Message Center </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a routerLink="./setup/sendMessage" [ngStyle]="backGroundColor"> Send Messages </a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <!-- <a href="#" class="dropdown-toggle" data-toggle="dropdown">Members
+                                                <b class="caret"></b>
+                                            </a> -->
+                <!-- <a class="dropdown-toggle" data-toggle="dropdown">Members
+                                                <b class="caret"></b>
+                                            </a> -->
+                <a data-toggle="dropdown">
+                    <div class="menuLogo">
+                       <!--  <img src="./assets/images/user.png"> -->
+                       <i class="fas fa-users"></i>
+                    </div>
+                    <div>
+                        Members
+                        <b class="caret"></b>
+                    </div>
+                </a>
+                <ul class="dropdown-menu multi-level">
+                    <li>
+                        <a [routerLink]="['./members/memberspage']" [ngStyle]="backGroundColor"> Members </a>
+                    </li>
+                    <!-- <li class="divider"></li>
+                    <li>
+                        <a routerLink="./users"> User Management </a>
+                    </li> -->
+                    <!--  <li class="divider"></li> -->
+                    <!--  <li>
+                                                    <a>phase mgmt</a>
+                                                </li> -->
+                    <li class="divider"></li>
+                    <li class="dropdown-submenu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" [ngStyle]="backGroundColor"> Phase Management </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a routerLink="./setup/phaseStausManagement" [ngStyle]="backGroundColor"> Status Management </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a routerLink="./setup/addMemberToPhase" [ngStyle]="backGroundColor"> Add Member To Phase </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a routerLink="./setup/phaseTracking" [ngStyle]="backGroundColor"> Phase Tracking </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a routerLink="./setup/payrequestpage" [ngStyle]="backGroundColor"> Special Pay Request </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </li>
+            <li>
+                <!-- <a href="#" class="dropdown-toggle" data-toggle="dropdown">Assignments
+                                                <b class="caret"></b>
+                                            </a> -->
+
+                <!-- <a class="dropdown-toggle" data-toggle="dropdown">Assignments
+                                                <b class="caret"></b>
+                                            </a> -->
+                <a data-toggle="dropdown">
+                    <div class="menuLogo">
+                       <!--  <img src="./assets/images/graph.png"> -->
+                       <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <div>
+                        <!-- Assignments -->
+                        Assignments
+                        <b class="caret"></b>
+                    </div>
+                </a>
+                <ul class="dropdown-menu multi-level">
+                    <li>
+                        <a [routerLink]="['./assignments/candidate']" [ngStyle]="backGroundColor"> Candidates </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a routerLink="./selectionpage" [ngStyle]="backGroundColor"> Selection </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li class="dropdown-submenu">
+                        <a class="dropdown-toggle" data-toggle="dropdown" [ngStyle]="backGroundColor"> Management </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a routerLink="./testspage" [ngStyle]="backGroundColor"> Tests </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a routerLink="./studiespage" [ngStyle]="backGroundColor"> Studies </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a routerLink="./consentpage" [ngStyle]="backGroundColor"> Consent </a>
+                            </li>
+
+                        </ul>
+                    </li>
+
+                </ul>
+            </li>
+            <li>
+                <!-- <a href="#" class="dropdown-toggle" data-toggle="dropdown">Portal Mgmt
+                                                <b class="caret"></b>
+                                            </a> -->
+                <!-- <a class="dropdown-toggle" data-toggle="dropdown">Portal Mgmt
+                                                <b class="caret"></b>
+                                            </a> -->
+                <a data-toggle="dropdown">
+                    <div class="menuLogo">
+                       <!--  <img src="./assets/images/cloud.png"> -->
+                       <i class="fas fa-cloud"></i>
+                    </div>
+                    <div>
+                        <!-- Portal Management -->
+                        Portal Management
+                        <b class="caret"></b>
+                    </div>
+                </a>
+                <ul class="dropdown-menu multi-level">
+                    <li>
+                        <a  [routerLink]="['./portal/testreq']" [ngStyle]="backGroundColor"> Study Requirements </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a [routerLink]="['./portal/req']" [ngStyle]="backGroundColor"> Test Requirements </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a routerLink="./users" [ngStyle]="backGroundColor"> User Management </a>
+                    </li>
+                </ul>
+            </li>
+            <li [hidden]="!timer.showRefresh">
+                expires in: {{timer.timeout}} seconds
+                <br>
+                <button (click)="refreshToken()">Refresh</button>
+            </li>
+
+            <li>
+                <!-- <a href="#" class="dropdown-toggle" data-toggle="dropdown">Account
+                                                <b class="caret"></b>
+                                            </a> -->
+                <!-- <a class="dropdown-toggle" data-toggle="dropdown">Account
+                                                <b class="caret"></b>
+                                            </a> -->
+                <a data-toggle="dropdown">
+                    <div class="menuLogo">
+                       <!--  <img src="./assets/images/icon-account.png"> -->
+                       <i class="fas fa-user"></i>
+                    </div>
+                    <div>
+                        Account
+                        <b class="caret"></b>
+                    </div>
+                </a>
+                <ul class="dropdown-menu multi-level">
+                    <li>
+                        <a routerLink="./profilepage" [ngStyle]="backGroundColor"> Profile </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a routerLink="./passwordpage" [ngStyle]="backGroundColor"> Change Password </a>
+                    </li>
+                    <li>
+                        <a [routerLink]="['./account/accountSettings']" [ngStyle]="backGroundColor"> Settings </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a [routerLink]="['./account/userList']" [ngStyle]="backGroundColor"> Security </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a (click)="logout()" [ngStyle]="backGroundColor"> LogOut </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <!-- 
+                    <button class="navbar-toggler desktop" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault"
+                        aria-expanded="true" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button> -->
+
+
+    <div class="menu-toggle desktop">
+
+       <!--  <span *ngIf="collapseMenu" (click)="collapseMenu = !collapseMenu" [ngStyle]="backGroundColor">
+                <i class="fas fa-caret-up"></i>
+        </span>
+        <span *ngIf="!collapseMenu" (click)="collapseMenu = !collapseMenu" [ngStyle]="backGroundColor">
+                <i class="fas fa-caret-down"></i>
+        </span> -->
+        
+        <span class="fa" (click)="collapseMenu = !collapseMenu" [ngClass]="[collapseMenu ? 'fa-sort-desc' : 'fa-sort-asc ']" [ngStyle]="backGroundColor">
+        </span>
+    </div>
+
+    <div class="menu-toggle mobile">
+        <span (click)="collapseMenu = !collapseMenu"><!-- [ngStyle]="backGroundColor" -->
+            <strong></strong>
+            <strong></strong>
+            <strong></strong>
+
+        </span>
+    </div>
+</nav>
+
+<!-- <nav class="navbar navbar-expand-md navbar-dark bg-info fixed-top" [ngClass]="{'collapseMenu':collapseMenu}">
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+            <ul class="navbar-nav mr-auto">
+                <li class="col-md-1 first-menu">
+                    <a data-toggle="dropdown" aria-expanded="false" routerLink="/">
+                        <div class="menuLogo">
+                            <img src="./assets/images/home.png">
+                        </div>
+                        <div>
+                            Logo
+                        </div>
+                    </a>
+                </li>
+                
+                <li class="col-sm-1 nav-menu-spacing">
+                    <a data-toggle="dropdown" aria-expanded="false">
+                        <div class="menuLogo">
+                            <img src="./assets/images/settings.png">
+                        </div>
+                        <div>
+                            Setup
+                            <b class="caret"></b>
+                        </div>
+                    </a>
+    
+                    <ul class="dropdown-menu multi-level nav-menu-spacing bg-info">
+    
+                        <li class="dropdown-submenu">
+                            <a class="dropdown-toggle" data-toggle="dropdown"> General </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a [routerLink]="['./setup/test']"> Test </a>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <a [routerLink]="['./setup/list']"> List </a>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <a routerLink="./consentformemailpage">
+                                        Consent Form E-Mail Template </a>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <a routerLink="./messagetemplatepage">
+                                        Message Template </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="divider"></li>
+                        <li class="dropdown-submenu">
+                            <a class="dropdown-toggle" data-toggle="dropdown"> Projects </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a [routerLink]="['./setup/project']"> Project </a>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <a [routerLink]="['./setup/phase']"> Phase </a>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <a routerLink="./digitaltestpage">
+                                        Digital Test E-Mail Template
+                                    </a>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <a [routerLink]="['./setup/study']"> Study Page </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a routerLink="./variablecalpage"> Variable Calculations </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a [routerLink]="['./setup/consentform']"> Consent Form </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="col-sm-2 nav-menu-spacing">
+    
+                    <a data-toggle="dropdown">
+                        <div class="menuLogo">
+                            <img src="./assets/images/one.png">
+                        </div>
+                        <div>
+                            Incentive Tracking
+                            <b class="caret"></b>
+                        </div>
+                    </a>
+                    <ul class="dropdown-menu multi-level">
+                        <li>
+                                <a [routerLink]="['./incentive/basepay']"> Basepay </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a routerLink="./examinerpage"> Examiner/Site </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a routerLink="./demospage"> Demos </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a routerLink="./sitepage"> Site Allocation </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a routerLink="./paymentspage"> Payments </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a routerLink="./batchedpage"> Batched </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a routerLink="./manualpage"> Manual </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="col-sm-1 nav-menu-spacing">
+                    <a data-toggle="dropdown">
+                        <div class="menuLogo">
+                            <img src="./assets/images/message.png">
+                        </div>
+                        <div>
+                            Messages
+                            <b class="caret"></b>
+                        </div>
+                    </a>
+                    <ul class="dropdown-menu multi-level">
+                        <li>
+                            <a routerLink="./msgcenterpage"> Message Center </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a routerLink="./createmsgpage"> Create Messages </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="col-sm-1 nav-menu-spacing">
+    
+                    <a data-toggle="dropdown">
+                        <div class="menuLogo">
+                            <img src="./assets/images/user.png">
+                        </div>
+                        <div>
+                            Members
+                            <b class="caret"></b>
+                        </div>
+                    </a>
+                    <ul class="dropdown-menu multi-level">
+                        <li>
+                            <a [routerLink]="['./members/memberspage']"> Members </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a routerLink="./users"> User Management </a>
+                        </li>
+    
+                        <li class="divider"></li>
+                        <li class="dropdown-submenu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Phase Management </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a routerLink="./statusmanagementpage"> Status Management </a>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <a routerLink="./payrequestpage"> Pay Request </a>
+                                </li>
+                            </ul>
+                        </li>
+    
+                    </ul>
+                </li>
+                <li class="col-sm-1 nav-menu-spacing">
+    
+                    <a data-toggle="dropdown">
+                        <div class="menuLogo">
+                            <img src="./assets/images/graph.png">
+                        </div>
+                        <div>
+                            Assignments
+                            <b class="caret"></b>
+                        </div>
+                    </a>
+                    <ul class="dropdown-menu multi-level">
+                        <li>
+                            <a [routerLink]="['./assignments/candidate']"> Candidates </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a routerLink="./selectionpage"> Selection </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li class="dropdown-submenu">
+                            <a class="dropdown-toggle" data-toggle="dropdown"> Management </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a routerLink="./testspage"> Tests </a>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <a routerLink="./studiespage"> Studies </a>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <a routerLink="./consentpage"> Consent </a>
+                                </li>
+    
+                            </ul>
+                        </li>
+    
+                    </ul>
+                </li>
+                <li class="col-sm-2  nav-menu-spacing">
+                    <a data-toggle="dropdown">
+                        <div class="menuLogo">
+                            <img src="./assets/images/cloud.png">
+                        </div>
+                        <div>
+                            Portal Management
+    
+                            <b class="caret"></b>
+                        </div>
+                    </a>
+                    <ul class="dropdown-menu multi-level">
+                        <li>
+                           <a [routerLink]="['./portal/req']"> Requirements </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a routerLink="./pmusermgmtpage"> User Management </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="col-sm-3 last-menu">
+                    <a data-toggle="dropdown">
+                        <div class="menuLogo">
+                            <img src="./assets/images/icon-account.png">
+                        </div>
+                        <div>
+                            Account
+                            <b class="caret"></b>
+                        </div>
+                    </a>
+                    <ul class="dropdown-menu multi-level">
+                        <li>
+                            <a routerLink="./profilepage"> Profile </a>
+                        </li>
+                        <li class="divider"></li>
+    
+                        <li>
+                            <a routerLink="./passwordpage"> Change Password </a>
+                        </li>
+                        <li>
+                            <a (click)="logout()"> LogOut </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+    
+        </div>
+    
+        <div class="menu-toggle desktop">
+            <span (click)="collapseMenu = !collapseMenu" [ngClass]="[collapseMenu ? 'glyphicon glyphicon-chevron-down' : 'glyphicon glyphicon-chevron-up']">
+            </span>
+        </div>
+    
+    
+        <div class="menu-toggle mobile">
+            <span (click)="collapseMenu = !collapseMenu">
+    
+                <strong></strong>
+                <strong></strong>
+                <strong></strong>
+    
+            </span>
+        </div>
+    
+    </nav> -->
+
+<!-- <p>
+        Hello, world! <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+
+  <i class="fas fa-user"></i>
+  <i class="far fa-user"></i>
+  <i class="fas fa-search"></i>
+  <i class="fab fa-github-square"></i>
+
+    </p>   -->
+</div>
+<div class="page-body" [ngClass]="{'body-toggle':collapseMenu}" >
+    <router-outlet>
+    </router-outlet>
+</div>

@@ -1,0 +1,96 @@
+<div class="row col-md-12">
+    <div [ngDraggable]="draggableEnabled" [handle]="qdragHandle" class="card demo-card" [ngClass]="{'vertical': showVertical}"
+        [ngClass]="{'card-accent-info': draggableEnabled, 'card-accent-danger': !draggableEnabled }" [style.background-color]="dock.backgroundcolor">
+        <!-- [style.background-color]="dock.backgroundcolor" -->
+        <ul>
+            <li #qdragHandle class="card-header">
+                Dock
+            </li>
+
+            <li class="card-block">
+
+                <!-- <div> -->
+                <div *ngFor="let prop of dock.dockControls">
+                    <div [ngSwitch]="'button'">
+                        <button [disabled]="!prop.enable" class="btn btn-info btn-dock" *ngSwitchCase="prop.type" type="button" value="prop.label"
+                            (click)="sendParentEvent(prop.label)">{{prop.label}}</button>
+                    </div>
+
+                    <div [ngSwitch]="'select'">
+                        <select *ngSwitchCase="prop.type" class="form-control select-dock" [(ngModel)]="prop.value" (change)="sendParentEvent(prop.key,$event.target.value)">
+                            <option value="0">Select {{prop.key}}</option>
+                            <option *ngFor="let item of prop.controlOptions" [value]="item.ID"> {{item.Description}}</option>
+                        </select>
+
+
+                        <!-- <div class="col-sm-12" *ngSwitchCase="prop.type">
+                                <select class="form-control" [(ngModel)]="prop.value" (change)="sendParentEvent(prop.key,$event.target.value)">
+                                    <option value="0">Select {{prop.key}}</option>
+                                    <option *ngFor="let item of prop.controlOptions" [value]="item.ID"> {{item.Description}}</option>
+                                </select>
+                            </div> -->
+                    </div>
+                    <div *ngIf="prop.type=='selectSpecified'">
+                        <div class="col-sm-12 maxWidthForLists">
+                            <select class="form-control" [(ngModel)]="prop.value" (change)="sendParentEvent(prop.key,$event.target.value)">
+                                <option value="">Select {{prop.key}}</option>
+                                <option *ngFor="let item of prop.controlOptions" [value]="item[prop.idKey]"> {{item[prop.descKey]}}</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div [ngSwitch]="'checkbox'">
+                        <mat-checkbox *ngSwitchCase="prop.type" (change)="sendParentEvent(prop.label,0)">{{prop.label}}</mat-checkbox>
+                    </div>
+                </div>
+
+            </li>
+            <li>
+
+            </li>
+            <li>
+                <span (click)="showVertical = !showVertical" class="fa" [ngClass]="{ 'fa-arrows-h': !showVertical,'fa-arrows-v':showVertical}"></span>
+            </li>
+            <li>
+                &nbsp;
+            </li>
+            <li>
+                <span style="cursor: pointer" class="fa" (click)="draggableEnabled=!draggableEnabled" [ngClass]="{ 'fa-thumb-tack': draggableEnabled, 'fa-lock': !draggableEnabled }"
+                    class="fa fa-thumb-tack"></span>
+            </li>
+
+            <!-- <li class="col-sm-1">
+                    <i class="fa fa-arrows-h"></i>
+                </li>
+                
+                <li class="col-sm-1">
+                    <i class="fa fa-lock"></i>
+                </li> -->
+
+
+        </ul>
+
+    </div>
+
+    <!-- 
+        <div id="demo3" ngDraggable   class="card demo-card" [ngClass]="{ 'card-accent-info': draggableEnabled, 'card-accent-danger': !draggableEnabled }">
+        <div   class="card-header">
+            <div class="col-md-1">Doc</div>
+        </div>
+        <div class="card-block">
+            <div class="row">
+                <div class="col-md-1">
+                    <input type="button" value="Add/Edit">
+                </div>
+                <div class="col-md-1">
+                    <input type="button" value="Cancel">
+                </div>
+                <div class="col-md-1">
+                    <button type="button" class="btn btn-primary" (click)="draggableEnabled=!draggableEnabled">{{ draggableEnabled ? 'Disable' : 'Enable' }} Draggable</button>
+                </div>
+            </div>
+            dsfsdsd selectedId dsfdsf sdfsdfsd sdfsd
+        </div>
+        </div> -->
+</div>
+<div class="clearfix"></div>

@@ -1,0 +1,16 @@
+<div class="col-md-6" style="background-color: rgb(245,245,245)">
+  <div class="breadcrumbs">
+      <a routerLink="/">Home</a> / Incentive Tracking - Setup - Site payment allocation
+  </div>
+</div>
+<div class="container-fluid topMarginRemovethis">
+    <mat-card class="matContainer">
+      <div class="matContainerPadding">
+        <simple-dock (onDocEvent)="handleDocEvent($event)" [dock]="dock" [isComponentLoaded]="true" [callApplyChanges]="true" class="fixed"></simple-dock>
+        <div class="upperForm">
+            <dynamic-table [hidden]="!details" [key]="'id'" [details]="details" (onTableEvent)="handleTableEvent($event)" class="upperForm"></dynamic-table>
+        </div>
+      </div>
+    </mat-card>
+</div>
+<app-loader [hidden]="!loading"></app-loader>

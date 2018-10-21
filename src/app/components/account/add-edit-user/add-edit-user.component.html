@@ -1,0 +1,76 @@
+<div class="container topMarginRemovethis">
+  <mat-card class="matContainer">
+    <div class="matContainerPadding">
+      <mat-card-title>
+        <h3 class="text-center">{{pageTitle}} User</h3>
+      </mat-card-title>
+      <form [formGroup]="formGroup" (submit)="saveUser()">
+        <div>
+          <mat-form-field>
+            <input type="text" matInput placeholder="Username" formControlName="userName">
+          </mat-form-field>
+          <div fxLayout fxLayout.xs="column" fxLayoutAlign="left" fxLayoutGap="15px" fxLayoutGap.xs="0">
+            <div fxFlex="85%">
+              <mat-form-field>
+                <input [type]="editUserData!=null || !genPasswordClicked?'password':'text'" matInput placeholder="Password" formControlName="password">
+              </mat-form-field>
+              <div *ngIf="formGroup.get('password').errors && formGroup.get('password').touched">
+                <mat-error *ngIf="formGroup.get('password').errors.containSpecialCharacter">
+                  Password should Contain atleast one Special Character
+                </mat-error>
+                <mat-error *ngIf="formGroup.get('password').errors.containsNumber">
+                  Password should Contain atleast one number
+                </mat-error>
+                <mat-error *ngIf="formGroup.get('password').errors.containsUpperCase">
+                  Password should Contain atleast one Upper Case Letter
+                </mat-error>
+                <mat-error *ngIf="formGroup.get('password').errors.containsLowerCase">
+                  Password should Contain atleast one Lower Case Letter
+                </mat-error>
+                <mat-error *ngIf="formGroup.get('password').errors.minlength">
+                  Password should Contain atleast 8 characters
+                </mat-error>
+              </div>
+            </div>
+            <div fxFlex="15%" class="genPasswordButton">
+              <button type="button" mat-raised-button color="primary" (click)="generatePassword()">Generate Password</button>
+            </div>
+          </div>
+          <mat-form-field>
+            <mat-select placeholder="Select Roles" formControlName="roles" multiple>
+              <mat-option *ngFor="let role of roleList" [value]="role.roleId">
+                {{ role.roleDesc }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-select placeholder="Select Country" formControlName="country">
+              <mat-option *ngFor="let country of countryList" [value]="country.countryId">
+                {{ country.countryName }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field>
+            <input type="email" matInput placeholder="Email" formControlName="email">
+          </mat-form-field>
+          <mat-error *ngIf="formGroup.get('email').errors && formGroup.get('email').touched && formGroup.get('email').errors.emailError">
+            Invalid Email Format
+          </mat-error>
+          <mat-form-field *ngIf="formGroup.get('memberId')!=null">
+            <input type="text" matInput placeholder="Member ID" formControlName="memberId">
+          </mat-form-field>
+          <div *ngIf="formGroup.get('isLocked')!=null">
+            <mat-checkbox formControlName="isLocked">Is Locked?</mat-checkbox>
+          </div>
+          <div>
+            <mat-checkbox formControlName="isPearsonemployee">User is a Pearson Employee?</mat-checkbox>
+          </div>
+
+        </div>
+        <button type="button" mat-raised-button (click)="cancel()">Cancel</button>
+        <button type="submit" mat-raised-button color="primary" [disabled]="formGroup.invalid">Save</button>
+      </form>
+    </div>
+  </mat-card>
+</div>
+<app-loader [hidden]="!loading"></app-loader>

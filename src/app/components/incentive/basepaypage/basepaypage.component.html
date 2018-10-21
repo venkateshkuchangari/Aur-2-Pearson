@@ -1,0 +1,117 @@
+<div class="col-md-6" style="background-color: rgb(245,245,245)">
+    <div class="breadcrumbs">
+        <a routerLink="/">Home</a> / Incentive Tracking - Setup - Base Pay
+    </div>
+</div>
+<form>
+    <div class="col-lg-12 col-md-12">
+        <simple-dock (onDocEvent)="handleDocEvent($event)" [dock]="dock" [isRowSelected]="id > 0 || headerSelected ? true : false"
+            [isComponentLoaded]="isComponentloaded"></simple-dock>
+    </div>
+    <form [formGroup]="listFormGroup">
+        <div id="divTest" class="row col-md-12  dock-after" style="display:none;">
+    <div class="row col-md-12" > 
+            <div class="col-md-3">
+                <mat-form-field class="col-lg-12">
+                    <input matInput type="text" formControlName="name" placeholder="Name">
+                </mat-form-field>
+            </div>
+            
+            <div class="col-md-3" align="center">
+                <div class="col-lg-12">
+                        <select id="selectpicker" formControlName="testId" class="selectpicker" data-live-search="true">
+                            <option class="special" value="">Select Test</option>
+                            <option class="special" *ngFor="let option of phaseItemsModel" [value]="option.id">{{option.testName}} </option>
+                        </select>
+                </div>
+            </div>
+            <div class="col-md-3" align="center">
+                <div class="col-lg-12">
+                    <div class="col-lg-12 col-md-12">
+                        <select id="selectpicker" formControlName="incentiveTypeId" class="selectpicker" data-live-search="true">
+                            <option class="special" value="">Incentive type</option>
+                            <option class="special" *ngFor="let option of types" [value]="option.lkp_lookup_value_id">{{option.value_description}} </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+             <div class="col-md-2" align="center">
+                <div class="col-lg-12">
+                    <div class="col-lg-12 col-md-12">
+                        <select id="selectpicker" formControlName="payeeTypeId" class="selectpicker" data-live-search="true">
+                            <option class="special" value="">Payee type</option>
+                            <option class="special" *ngFor="let option of payeeType" [value]="option.lkp_lookup_value_id">{{option.value_description}} </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-1" bottom-margin="flex" top-margin="flex" style="margin-top:1%">
+                <div class="checkbox-row">
+                    <mat-checkbox formControlName="active">Active</mat-checkbox>
+                </div>
+            </div>  
+        </div>
+        <div class="row col-md-12" >
+               
+                <div class="col-md-3">
+                    <div class="col-md-12" style="color:red" *ngIf="listFormGroup.get('name').hasError('required') && (listFormGroup.get('name').touched || pageSubmit)">Please enter Name</div>
+                </div>
+                <div class="col-md-3">
+                    <div class="col-md-12" style="color:red" *ngIf="listFormGroup.get('testId').hasError('required') && (listFormGroup.get('testId').touched || pageSubmit)">Please select Test Type</div>
+                </div>
+                <div class="col-md-3">
+                    <div class="col-md-12" style="color:red" *ngIf="listFormGroup.get('incentiveTypeId').hasError('required') && (listFormGroup.get('incentiveTypeId').touched || pageSubmit)">Please select Incentive Type</div>
+                </div>
+                <div class="col-md-3">
+                    <div class="col-md-12" style="color:red" *ngIf="listFormGroup.get('payeeTypeId').hasError('required') && (listFormGroup.get('payeeTypeId').touched || pageSubmit)">Please select Payee Type</div>
+                </div>
+        </div>
+            <div class="row col-md-12">
+                <div class="col-md-4">
+                    <div class="col-lg-12">
+                        <div class="col-lg-12 col-md-12">
+                            <select id="selectpicker"  formControlName="statusId" class="selectpicker" data-live-search="true">
+                                <option class="special" value="">Select Status</option>
+                                <option class="special" *ngFor="let option of statusModel" [value]="option.status_id">{{option.status_description}} </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <!-- <mat-form-field>
+                                <input matInput placeholder="Effective Date">
+                            </mat-form-field> -->
+
+                        <mat-form-field>
+                            <mat-datepicker mat-placeholder="Effective date"></mat-datepicker>
+                            <input matInput [matDatepicker]="picker" formControlName="effectiveDate" placeholder="Effective Date">
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-lg-12">
+                        <mat-form-field>
+                            <input matInput type="number" formControlName="amount" placeholder="Amount">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="col-lg-12 col-md-8">
+                        <mat-form-field>
+                            <textarea matInput formControlName="notes" placeholder="Notes" cols="25" rows="8"></textarea>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+
+            <div   class="col-lg-12 col-md-12" [hidden] ="!details" >
+                <dynamic-table [hidden]="false" [key]="'id'" [details]="notesdetails"  ></dynamic-table>
+            </div>
+
+        </div>
+
+       
+    </form>
+    <div id="divTable" class="col-lg-12 col-md-12 dock-after" [hidden] = "selectedPhaseId == 0" >
+        <dynamic-table [hidden]="false" [key]="'id'" [details]="details" (onTableEvent)="handleTableEvent($event)"></dynamic-table>
+    </div>
+</form>

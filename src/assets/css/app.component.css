@@ -1,0 +1,48 @@
+.loginCard{
+    height: 100%;
+    color: white;
+    margin: auto;
+    margin-top: 15%
+}
+.CompanyLogo{
+    background-image: url("../images/pearson-logo@2x.jpg");
+    background-size: cover;
+}
+.loginContent{
+    width: auto;
+    margin: auto;
+}
+
+.mat-form-field {
+    width: inherit !important;
+    font-size: medium;
+    /* width: inherit; */
+    /* display: inline !important; */
+}
+
+.popup-textbox
+{
+    width: inherit !important;
+    margin-bottom:-10px;
+}
+
+.label
+{
+    font-size: medium !important;
+}
+
+.mat-snack-bar-container {
+    border-radius: 2px;
+    box-sizing: content-box;
+    display: block;
+    margin: 24px;
+    max-width: 650px !important;
+    min-width: 300px !important;
+    padding: 14px 24px;
+    transform: translateY(100%) translateY(24px);
+}
+
+.mat-card-title {
+    font-size: 20px !important;
+    font-weight: 400 !important;
+}

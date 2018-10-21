@@ -1,0 +1,27 @@
+<div class="col-md-6" style="background-color: rgb(245,245,245)">
+    <div class="breadcrumbs">
+        <a routerLink="/">Home</a> / Messages - Create Message template
+    </div>
+</div>
+<div class="container topMarginRemovethis">
+    <mat-card class="matContainer">
+        <div class="matContainerPadding">
+            <simple-dock (onDocEvent)="handleDocEvent($event)" [dock]="dock" [isComponentLoaded]="true" [callApplyChanges]="true" class="fixed"></simple-dock>
+            <form [formGroup]="formGroup" class="upperForm">
+                <!--  -->
+                <mat-form-field fxFlex="100%">
+                    <input type="text" matInput placeholder="Template Name" formControlName="templatename">
+                </mat-form-field>
+                <!--  -->
+                <mat-form-field fxFlex="100%">
+                    <input type="text" matInput placeholder="Email Subject" formControlName="emailsubject">
+                </mat-form-field>
+                <!--  -->
+                <!-- <textarea [froalaEditor]="editorOptions" formControlName="template"></textarea> -->
+                <ckeditor [config]="ckEditorConfig" formControlName="template" debounce="500"></ckeditor>
+                <mat-error *ngIf="formGroup.get('template').errors && formGroup.get('template').touched">Please define message template</mat-error>
+            </form>
+        </div>
+    </mat-card>
+</div>
+<app-loader [hidden]="!loading"></app-loader>

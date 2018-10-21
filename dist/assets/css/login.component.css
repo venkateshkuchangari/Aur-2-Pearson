@@ -1,0 +1,71 @@
+
+.loginCard{
+    height: 100%;
+    color: white;
+    margin: 0 auto;
+    text-align: center;
+    display: block;
+}
+.CompanyLogo{
+    background-image: url("../images/pearson-logo@2x.jpg");
+    background-size: cover;
+    text-align: center;
+    margin: 0 auto;
+    display: block;
+    max-width: 40px;
+}
+.loginContent{
+    max-width: 350px;
+    margin: auto;
+    width: 100%;
+    padding: 0 !important;
+    background:none;
+}
+.login-component {
+    
+    background-image: url("../images/background.jpg");
+    background-size: cover;
+        height: 100vh;
+}
+.login_form{
+    background: #FFF;
+    padding: 15px;
+    text-align: center;
+    border-radius: 5px;
+}
+.login-component{
+
+       height: 100vh;
+    display: flex;
+    width: 100%;
+    vertical-align: middle;
+}
+
+
+.loginContent label{
+    width: 100%;
+    position: relative;
+    text-align: left;
+}
+.loginContent input {
+    width: 100%;
+    padding: 9px 5px 6px 28px;
+    border: 1px solid #DDD;
+    margin: 0 0 6px 0;
+    font-weight: normal;
+    border-radius: 2px;
+}
+
+.loginContent label .field-icon{
+    
+    position: absolute;
+    top: 6px;
+    left: 8px;
+    color: #666;
+
+}
+.loginContent label.field-icon .glyphicon{
+    color: #666;
+}
+
+

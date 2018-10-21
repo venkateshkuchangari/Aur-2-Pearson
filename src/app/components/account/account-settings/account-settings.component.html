@@ -1,0 +1,60 @@
+<div class="col-md-6" style="background-color: rgb(245,245,245)">
+    <div class="breadcrumbs">
+        <a routerLink="/">Home</a> / Account - Settings
+    </div>
+</div>
+<div class="container topMarginRemovethis">
+    <mat-card class="matContainer">
+      <div class="matContainerPadding">
+        <simple-dock (onDocEvent)="handleDocEvent($event)" [dock]="dock" [isComponentLoaded]="true" [callApplyChanges]="true" class="fixed"></simple-dock>
+        <!-- <mat-card-title>
+          <h3 class="center">Account Settings</h3>
+        </mat-card-title> -->
+        <form [formGroup]="formGroup" class="upperForm" (submit)="savePrefrences()">
+          <div fxLayout fxLayout.xs="column" fxLayoutAlign="left" fxLayoutGap="15px" fxLayoutGap.xs="0">
+            <div fxFlex>
+              <div>
+                <mat-checkbox formControlName="autoHide">Auto Hide Main Menu</mat-checkbox>
+              </div>
+              <div>
+                <mat-form-field>
+                  <mat-select placeholder="Select Home Module" formControlName="homeModule">
+                    <mat-option *ngFor="let module of moduleList" [value]="module.lkp_lookup_value_id">
+                      {{ module.value_description }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+            <div fxFlex>
+              <div>
+                <mat-checkbox formControlName="pinToolBar">Pin Toolbar</mat-checkbox>
+              </div>
+              <div>
+                <mat-checkbox formControlName="iconsOnly">Toolbar Icons Only</mat-checkbox>
+              </div>
+            </div>
+            <div fxFlex>
+              <label class="block">Select dock and Menu bar Color</label>
+              <div *ngIf="colorList!=undefined" fxLayout fxLayout.xs="column" fxLayoutAlign="left" fxLayoutGap="15px" fxLayoutGap.xs="0">
+                <div fxFlex>
+                  <div *ngFor="let color of colorList | slice:0:((colorList.length)/2)" (click)="selectColor(color.lkp_lookup_value_id)">
+                    <div class="colorDisplay" [ngClass]="{'selectedColor':color.lkp_lookup_value_id==formGroup.get('color').value}" [ngStyle]="{'background-color': color.hexcolorvalue }"></div>
+                    <span class="colourName" [ngClass]="{'selectedColorName':color.lkp_lookup_value_id==formGroup.get('color').value}">{{color.value_description}}</span>
+                  </div>
+                </div>
+                <div fxFlex>
+                  <div *ngFor="let color of colorList | slice:((colorList.length)/2):(colorList.length - 1)" (click)="selectColor(color.lkp_lookup_value_id)">
+                    <div class="colorDisplay" [ngClass]="{'selectedColor':color.lkp_lookup_value_id==formGroup.get('color').value}" [ngStyle]="{'background-color': color.hexcolorvalue }"></div>
+                    <span class="colourName" [ngClass]="{'selectedColorName':color.lkp_lookup_value_id==formGroup.get('color').value}">{{color.value_description}}</span>
+                  </div>
+                </div>
+              </div>
+              <mat-error *ngIf="formGroup.get('color').errors && formGroup.get('color').touched">Please Select a Dock color</mat-error>
+            </div>
+          </div>
+        </form>
+      </div>
+    </mat-card>
+  </div>
+  <app-loader [hidden]="!loading"></app-loader>

@@ -1,0 +1,18 @@
+<div class="container-fluid topMarginRemovethis">
+  <mat-card class="matContainer">
+    <div class="matContainerPadding">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item" aria-current="page">Setup</li>
+          <li class="breadcrumb-item" aria-current="page">General</li>
+          <li class="breadcrumb-item" aria-current="page">Variable</li>
+        </ol>
+      </nav>
+      <simple-dock (onDocEvent)="handleDocEvent($event)" [dock]="dock" [isComponentLoaded]="true" [callApplyChanges]="true" class="fixed"></simple-dock>
+      <div class="upperForm">
+        <dynamic-table [hidden]="!details" [key]="'id'" [details]="details" (onTableEvent)="handleTableEvent($event)" class="upperForm"></dynamic-table>
+      </div>
+    </div>
+  </mat-card>
+</div>
+<app-loader [hidden]="!loading"></app-loader>

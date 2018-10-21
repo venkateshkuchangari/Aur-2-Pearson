@@ -1,0 +1,68 @@
+<div class="container-fluid topMarginRemovethis">
+    <mat-card class="matContainer">
+      <div class="matContainerPadding">
+        <mat-card-title>
+          <h3 class="text-center">Add/Edit {{variableName}} Variable</h3>
+        </mat-card-title>
+        <simple-dock (onDocEvent)="handleDocEvent($event)" [dock]="dock" [isComponentLoaded]="true" [callApplyChanges]="true" class="fixed"></simple-dock>
+        <div class="topmargin">
+          <mat-card-title>
+            <h4>Add Option</h4>
+          </mat-card-title>
+        </div>
+        <form [formGroup]="newOption">
+          <div fxLayout fxLayout.xs="column" fxLayoutAlign="left" fxLayoutGap="15px" fxLayoutGap.xs="0">
+            <mat-form-field fxFlex="16%">
+              <input matInput placeholder="Description" formControlName="desc">
+            </mat-form-field>
+            <mat-form-field fxFlex="16%">
+              <input matInput placeholder="Abbreviation" formControlName="abbr">
+            </mat-form-field>
+            <mat-form-field fxFlex="16%">
+              <input matInput placeholder="Sort Order" formControlName="sortOrder">
+            </mat-form-field>
+            <mat-form-field fxFlex="16%">
+              <input matInput placeholder="Value" formControlName="val">
+            </mat-form-field>
+            <div *ngIf="dropdownList!=undefined && dropdownList.length>0" fxFlex="25%">
+              <angular2-multiselect [data]="dropdownList" [settings]="dropdownSettings" formControlName="parentDataColVarOptId"></angular2-multiselect>
+            </div>
+            <div fxFlex="11%">
+              <button type="button" mat-raised-button color="primary" [disabled]="newOption.invalid" (click)="createNewOption()">Add</button>
+            </div>
+          </div>
+        </form>
+        <form [formGroup]="formGroup" class="lowerForm">
+          <div formArrayName="existingOptions" *ngFor="let item of castFormGroup(); let i = index;">
+            <div [formGroupName]="i">
+              <div fxLayout fxLayout.xs="column" fxLayoutAlign="left" fxLayoutGap="15px" fxLayoutGap.xs="0">
+                <div fxFlex="5%">
+                  <mat-checkbox (click)='selectedItem(val.checked,item)' #val formControlName="selected"></mat-checkbox>
+                </div>
+                <mat-form-field fxFlex="14%">
+                  <input matInput placeholder="Description" formControlName="desc">
+                </mat-form-field>
+                <mat-form-field fxFlex="14%">
+                  <input matInput placeholder="Abbreviation" formControlName="abbr">
+                </mat-form-field>
+                <mat-form-field fxFlex="14%">
+                  <input matInput placeholder="Sort Order" formControlName="sortOrder">
+                </mat-form-field>
+                <mat-form-field fxFlex="14%">
+                  <input matInput placeholder="Value" formControlName="val">
+                </mat-form-field>
+                <div *ngIf="dropdownList.length>0" fxFlex="32%">
+                  <angular2-multiselect [data]="dropdownList" [settings]="dropdownSettings" formControlName="parentVar"></angular2-multiselect>
+                </div>
+                <div fxFlex="7%">
+                  <button type="button" mat-raised-button color="primary" (click)="updateRecord(item)" [disabled]="item.invalid">Update</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+  
+      </div>
+    </mat-card>
+  </div>
+  <app-loader [hidden]="!loading"></app-loader>

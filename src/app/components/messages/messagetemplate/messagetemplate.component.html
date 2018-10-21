@@ -1,0 +1,38 @@
+<div class="col-md-6" style="background-color: rgb(245,245,245)">
+    <div class="breadcrumbs">
+        <a routerLink="/">Home</a> / Messages - message center
+    </div>
+</div>
+<form class="page-container">
+    <div class="row col-lg-12 col-md-12">
+        <simple-dock (onDocEvent)="handleDocEvent($event)" [dock]="dock" [isRowSelected]="id > 0 || headerSelected ? true : false"
+            [isComponentLoaded]="isComponentloaded"></simple-dock>
+        <div class="col-lg-12">&nbsp;</div>
+    </div>
+</form>
+<div id="divTable" class="col-lg-12 col-md-12 dock-after">
+    <div class="row col-lg-3 col-md-3">
+        <button mat-raised-button (click)="getTemplateDataForUnRead()">Unread</button>
+        <br/>
+        <button mat-raised-button (click)="getTemplateDataForSentMsgs()">Read</button>
+        <br/>
+        <button mat-raised-button (click)="getTemplateDataForRead()">Sent</button>
+        <br/>
+        <div class="col-lg-12">&nbsp;</div>
+    </div>
+    <dynamic-table [hidden]="false" [key]="'id'" [details]="details" (onTableEvent)="handleTableEvent($event)"></dynamic-table>
+</div>
+<div class="container topMarginRemovethis">
+    <mat-card class="matContainer">
+        <div class="matContainerPadding">
+            <form [formGroup]="formGroup" class="upperForm">
+                <div id="divTest" class="col-lg-12 dock-after" style="display:none;">
+                    <!-- <textarea [froalaEditor]="editorOptions" formControlName="template"></textarea> -->
+                    <ckeditor [config]="ckEditorConfig" formControlName="template" debounce="500"></ckeditor>
+                    <mat-error *ngIf="formGroup.get('template').errors && formGroup.get('template').touched">Please define message template</mat-error>
+                </div>
+            </form>
+        </div>
+    </mat-card>
+</div>
+<app-loader [hidden]="!loading"></app-loader>

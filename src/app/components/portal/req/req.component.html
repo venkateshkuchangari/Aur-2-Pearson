@@ -1,0 +1,137 @@
+<div class="col-md-6" style="background-color: rgb(245,245,245)">
+    <div class="breadcrumbs">
+        <a routerLink="/">Home</a> / Portal Management - Test Requirements
+    </div>
+</div>
+<form class="page-container">
+    <div class="col-lg-12 col-md-12">
+        <simple-dock (onDocEvent)="handleDocEvent($event)" [dock]="dock" [isRowSelected]="id > 0 || headerSelected ? true : false"
+            [isComponentLoaded]="isComponentloaded"></simple-dock>
+    </div>
+    <div class="col-lg-12">&nbsp;</div>
+    <form class="row" [formGroup]="listFormGroup">
+        <div class="col-lg-12 row">
+            <div class="col-lg-6" style="margin-top:4%">
+                <div class="row col-md-12">
+                    <div class="col-lg-11">
+                        <h5>
+                            <b>Test1</b>(
+                            <span style="color:red">Required</span>)
+                        </h5>
+                    </div>
+                </div>
+                <div class="row col-md-12">
+                    <div class="row col-md-1">
+                        &nbsp;
+                    </div>
+                    <div class="row col-md-11">
+                        <p> The requirements will show on the portal for the selected test below:</p>
+                        <br>
+                    </div>
+                </div>
+                <div class="row col-lg-12">
+                    <div class="col-lg-4 col-md-4">
+                        <mat-form-field>
+                            <mat-select placeholder="Select Project" formControlName="forProjectId" (change)="getPhases()">
+                                <mat-option value="">Select Project</mat-option>
+                                <mat-option *ngFor="let option of projectList" [value]="option.project_id">
+                                    {{ option.project_name }}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-lg-4 col-md-4">
+                        <mat-form-field>
+                            <mat-select placeholder="Select Phase" formControlName="forPhaseId" (change)="getPhasesTests()">
+                                <mat-option value="">Select Phase</mat-option>
+                                <mat-option *ngFor="let option of phaseListModel" [value]="option.phase_id">
+                                    {{ option.phase_acronym }}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-lg-4 col-md-4">
+                        <mat-form-field>
+                            <mat-select placeholder="Select Test" (change) = "getSaveData()" formControlName="forPhaseTestId">
+                                <mat-option value="">Select Test</mat-option>
+                                <mat-option *ngFor="let option of phaseTestData" [value]="option.id">
+                                    {{ option.Test }}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <br>
+            </div>
+            <div class="col-lg-6" [hidden] = "!showTest2" style="margin-top:4%">
+                <div class="row col-md-12">
+                    <div class="col-lg-11">
+                        <h5>
+                            <b>Test2</b>
+                        </h5>
+                    </div>
+                    <div class="col-sm-1">
+                        <button mat-raised-button color="warn" (click) = "removeTest2()" >X</button>
+                    </div>
+                </div>
+                <div class="row col-md-12">
+                    <div class="row col-md-1">
+                        &nbsp;
+                    </div>
+                    <div class="row col-md-11">
+                        <p> If the candidate is assigned to this test as well, the requirements will show on the portal for this
+                            test. You may remove this test before editing the requirements by pressing remove.</p>
+                    </div>
+                </div>
+                <div class="row col-md-12">
+                    <div class="col-lg-4 col-md-4">
+                        <mat-form-field>
+                            <mat-select placeholder="Select Project" formControlName="andProjectId" (change)="getAndPhases()">
+                                <mat-option value="">Select Project</mat-option>
+                                <mat-option *ngFor="let option of projectList" [value]="option.project_id">
+                                    {{ option.project_name }}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-lg-4 col-md-4">
+                        <mat-form-field>
+                            <mat-select placeholder="Select Phase" formControlName="andPhaseId" (change)="getandPhasesTests()">
+                                <mat-option value="">Select Phase</mat-option>
+                                <mat-option *ngFor="let option of andphaseListModel" [value]="option.phase_id">
+                                    {{ option.phase_acronym }}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-lg-4 col-md-4">
+                        <mat-form-field>
+                            <mat-select placeholder="Select Test" (change) = "getSaveData()" formControlName="andPhaseTestId">
+                                <mat-option value="">Select Test</mat-option>
+                                <mat-option *ngFor="let option of andphaseTestData" [value]="option.id">
+                                    {{ option.Test }}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="clearfix"></div>
+
+        <div class="col-lg-12">&nbsp;</div>
+        <div class="container topMarginRemovethis">
+            <mat-card class="matContainer">
+                <div class="matContainerPadding">
+                    <!-- <form [formGroup]="listFormGroup" class="upperForm">  -->
+                    <!-- <textarea [froalaEditor]="editorOptions" formControlName="htmlRequirements"></textarea> -->
+                    <ckeditor [config]="ckEditorConfig" formControlName="htmlRequirements" debounce="500"></ckeditor>
+                    <mat-error *ngIf="listFormGroup.get('htmlRequirements').errors && listFormGroup.get('htmlRequirements').touched">Please define message template</mat-error>
+                    <!-- </form> -->
+                </div>
+            </mat-card>
+        </div>
+    </form>
+</form>
+<!-- <app-loader [hidden]="!loading"></app-loader> -->

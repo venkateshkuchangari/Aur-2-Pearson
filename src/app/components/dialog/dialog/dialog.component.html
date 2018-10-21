@@ -1,0 +1,6 @@
+<h3 mat-dialog-title>Delete</h3>
+<mat-dialog-content>Do you want to delete the {{data.item}} (id={{data.id}})  ?</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-raised-button color="warn" (click)="close('yes')">Yes</button>
+  <button mat-raised-button (click)="close('no')" class="noColor">No</button>
+</mat-dialog-actions>

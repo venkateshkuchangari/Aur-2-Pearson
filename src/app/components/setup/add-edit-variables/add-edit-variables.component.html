@@ -1,0 +1,19 @@
+<div class="container topMarginRemovethis">
+  <mat-card class="matContainer">
+    <div class="matContainerPadding">
+      <mat-card-title>
+        <h3 class="text-center">{{pageTitle}} Variable</h3>
+      </mat-card-title>
+      <simple-dock (onDocEvent)="handleDocEvent($event)" [dock]="dock" [isComponentLoaded]="true" [callApplyChanges]="true" class="fixed"></simple-dock>
+      <form [formGroup]="formGroup" class="upperForm">
+        <mat-form-field>
+          <input type="text" matInput placeholder="Name" formControlName="name">
+        </mat-form-field>
+        <mat-form-field>
+          <input type="text" matInput placeholder="Decription" formControlName="desc">
+        </mat-form-field>
+      </form>
+    </div>
+  </mat-card>
+</div>
+<app-loader [hidden]="!loading"></app-loader>
